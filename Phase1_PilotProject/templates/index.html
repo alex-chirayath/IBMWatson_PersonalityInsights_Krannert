@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"
+          rel="stylesheet">
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.css" />
+  </head>
+  <body>
+    <div class="container" style="pading:10px; border-radius:20px;border-style:solid; border-color:#cfd8dc ;height:90vh;" >
+      <div class="jumbotron" style="background-color:#428bca; padding:15px;" >
+        <h3 style="color:#ecf3f9;" >Krannert-IBM Watson Project</h3>
+      </div>
+    
+      {% if name %}
+		<h1>{{ name }}!</h1>
+	  {% endif %}
+	<div class="jumbotron" style="background:#bbdefb;padding:20%;" >
+      <form action="upload" method="post" enctype="multipart/form-data">
+         <div class="form-group">
+     
+           <input type="file" name="file[]" multiple=""  class="form-control-file">
+             
+        
+        </div>
+     
+            <button type="submit" class="btn btn-primary">Submit</button>
+          
+    </form>
+     <div>
+    </div>
+  </body>
+</html>
+ 
