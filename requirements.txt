@@ -1,6 +1,0 @@
-flask
-werkzeug
-requests
-docx
-pyenchant	
-PyPDF2
