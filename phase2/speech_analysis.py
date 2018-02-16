@@ -57,7 +57,7 @@ def getjson(filename):
 
     return r.json()
 
-def pick_interviewee(speaker):
+def pickinterviewee(speaker):
     """ Choose which speaker is interviewee.
 
     Args:
@@ -75,7 +75,7 @@ def pick_interviewee(speaker):
 
     return interviewee
 
-def get_interviewee_words(speaker_data):
+def getintervieweewords(speaker_data):
     """ Determine words spoken by interviewee.
 
     Args:
@@ -99,9 +99,18 @@ def get_interviewee_words(speaker_data):
                         break
 
     # TODO: change to checking for interviewee halfway through audio
-    interviewee = pick_interviewee(speakers)
+    interviewee = pickinterviewee(speakers)
 
     return speakers[interviewee]
+
+def writelisttotxt(filename, list):
+    text_file = open(filename + ".txt", "w")
+
+    for item in list:
+        text_file.write("%s\n" % item)
+
+    text_file.close()
+
 
 def speechanalysis(filename):
     speaker_data = getjson(filename)
@@ -109,7 +118,9 @@ def speechanalysis(filename):
     json_data = open("data.txt").read()
     speaker_data = json.loads(json_data)
 
-    interviewee_words = get_interviewee_words(speaker_data)
+    interviewee_words = getintervieweewords(speaker_data)
+
+    writelisttotxt(filename.replace(".mp3", ""), interviewee_words)
 
 if __name__ == "__main__":
     speechanalysis(sys.argv[1])
