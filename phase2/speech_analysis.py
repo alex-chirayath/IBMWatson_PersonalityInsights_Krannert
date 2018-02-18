@@ -1,11 +1,16 @@
 import requests
 import json
 import pprint
+import csv
 import sys
 
-url = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize"
-username = "be828bbc-2a8d-47e5-838b-ab79102d06c6"
-password = "R5gsSmhsiIPv"
+speech_to_text_url = "https://stream.watsonplatform.net/speech-to-text/api/v1/recognize"
+speech_to_text_username = "be828bbc-2a8d-47e5-838b-ab79102d06c6"
+speech_to_text_password = "R5gsSmhsiIPv"
+
+insights_url = "https://gateway.watsonplatform.net/personality-insights/api/v2/profile"
+insights_username = "366bd94d-6871-482c-9ca9-84de1d1f0e6a"
+insights_password = "NlgUu6FjF7XF"
 
 def getjson(filename):
     """ Translate mp3 to json object with IBM Watson API.
@@ -53,7 +58,7 @@ def getjson(filename):
     audio_file = open(filename, "rb")
     params = {"model" : "en-US_NarrowbandModel", "speaker_labels" : "true"}
 
-    r = requests.post(url, auth=(username, password), data=audio_file, headers=headers, params=params)
+    r = requests.post(speech_to_text_url, auth=(speech_to_text_username, speech_to_text_password), data=audio_file, headers=headers, params=params)
 
     return r.json()
 
@@ -106,13 +111,26 @@ def getintervieweewords(speaker_data):
     return speakers[interviewee]
 
 def writelisttotxt(filename, list):
-    text_file = open(filename + ".txt", "w")
+    text_file = open(filename, "w")
 
     for item in list:
         text_file.write("%s\n" % item)
 
     text_file.close()
 
+def getpersonalityinsights(filename):
+    headers = {"Content-Type" : "text/plain"}
+
+    print(filename)
+
+    with open(filename, 'r') as myfile:
+            data=myfile.read()
+
+    r = requests.post(insights_url, auth=(insights_username, insights_password), data=data, headers=headers)
+
+    print(r.json())
+
+    return r.json()
 
 def speechanalysis(filename):
     speaker_data = getjson(filename)
@@ -122,7 +140,11 @@ def speechanalysis(filename):
 
     interviewee_words = getintervieweewords(speaker_data)
 
-    writelisttotxt(filename.replace(".mp3", ""), interviewee_words)
+    text_file_name = filename.replace(".mp3", "")  + ".txt"
+
+    writelisttotxt(text_file_name, interviewee_words)
+
+    insights = getpersonalityinsights(text_file_name)
 
 if __name__ == "__main__":
     speechanalysis(sys.argv[1])
