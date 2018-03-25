@@ -1,0 +1,23 @@
+.pagetitle {
+    color: #800080;
+}
+
+input {
+    position: fixed;
+    left: 120px;
+}
+
+textarea {
+    position: fixed;
+    left: 120px;
+    margin-top: 20px;
+}
+#subBtn {
+    position: fixed;
+    margin-top: 50px;
+}
+
+#commentsLbl {
+    position: absolute;
+    top: 140px;
+}
