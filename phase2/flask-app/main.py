@@ -2,7 +2,10 @@
 import logging
 
 # Imports the Google Cloud client library
-#from google.cloud import storage
+# from google.cloud import storage
+
+# Imports speech analysis code
+import speech_analysis
 
 # [START imports]
 from flask import Flask, render_template, request
@@ -30,23 +33,15 @@ def submitted_form():
     email = request.form['email']
     comments = request.form['comments']
 
-#     if request.method == 'POST':
-#        # check if the post request has the file part
-#        if 'file' not in request.files:
-#            flash('No file part')
-#            return redirect(request.url)
-#        file = request.files['audio']
-#        # if user does not select file, browser also
-#        # submit a empty part without filename
-#        if file.filename == '':
-#            flash('No selected file')
-#            return redirect(request.url)
-#        if file and allowed_file(file.filename):
-#            filename = secure_filename(file.filename)
-#            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
-#            return redirect(url_for('uploaded_file',
-#                                    filename=filename))
-    
+    # TODO: fix so saving files works
+    if request.method == 'POST':
+        print('I got in')
+        files = request.files['audio']
+        files.save(secure_filename(files.filename))
+
+    # Call speech analysis with audio filename to get json insights
+    # insights = speech_analysis.speechanalysis(audio_filename)
+
     # Instantiates a client
     #storage_client = storage.Client()
 
