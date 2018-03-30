@@ -8,17 +8,15 @@ speech_to_text_url = 'https://stream.watsonplatform.net/speech-to-text/api/v1/re
 speech_to_text_username = 'be828bbc-2a8d-47e5-838b-ab79102d06c6'
 speech_to_text_password = 'R5gsSmhsiIPv'
 
-insights_url = 'https://gateway.watsonplatform.net/personality-insights/api/v2/profile'
+insights_url = 'https://gateway.watsonplatform.net/personality-insights/api/v2/profile?headers=true'
 insights_username = '366bd94d-6871-482c-9ca9-84de1d1f0e6a'
 insights_password = 'NlgUu6FjF7XF'
 
 def getspeech(filename):
     """ Translate mp3 to json object with IBM Watson API.
-
     This module takes the name of a mp3 file, including the path to
     that file, and calls the IBM Watson speech-to-text api to
     get a json object describing the audio.
-
     Example json for audio 'Hello world':
     {'result_index': 0,
         'results': [
@@ -47,7 +45,6 @@ def getspeech(filename):
                 'to': 0.52}
         ]
     }
-
     Args:
         filename: String name of mp3 file, including the path to that file
     Returns:
@@ -64,7 +61,6 @@ def getspeech(filename):
 
 def pickinterviewee(speaker):
     """ Choose which speaker is interviewee.
-
     Args:
         speaker: dictionary of speaker id to words spoken by that speaker
     Returns:
@@ -82,7 +78,6 @@ def pickinterviewee(speaker):
 
 def getintervieweewords(speaker_data):
     """ Determine words spoken by interviewee.
-
     Args:
         speaker_data: json object containing mp3 metadata
     Returns:
@@ -123,13 +118,12 @@ def writelisttotxt(filename, list):
 
 def getpersonalityinsights(filename):
     """ Get IBM Watson Personality Insights for file.
-
         Args:
             filename: string name of file to get personality insights from
         Returns:
             Response from IBM Watson Personality Insights API.
     """
-    headers = {'Content-Type' : 'text/plain'}
+    headers = {'Content-Type' : 'text/plain', 'Accept' : 'text/csv'}
 
     with open(filename, 'r') as myfile:
             data=myfile.read()
@@ -138,50 +132,8 @@ def getpersonalityinsights(filename):
 
     return r
 
-def headeradder():
-    return ["id","Adventurousness","Artistic interests","Emotionality","Imagination","Intellect","Authority-challenging","Achievement striving",
-            "Cautiousness","Dutifulness","Orderliness","Self-discipline","Self-efficacy","Activity level","Assertiveness","Cheerfulness",
-            "Excitement-seeking","Outgoing","Gregariousness","Altruism","Cooperation","Modesty","Uncompromising","Sympathy","Trust","Fiery",
-            "Prone to worry","Melancholy","Immoderation","Self-consciousness","Susceptible to stress","Challenge","Closeness","Curiosity",
-            "Excitement","Harmony","Ideal","Liberty","Love","Practicality","Self-expression","Stability","Structure","Conservation",
-            "Openness to change","Hedonism","Self-enhancement","Self-transcendence"]
-
-def jsontocsvwriter(filename,data):
-    """ Save Personality Insights Profile to 'values.csv'.
-
-        Args:
-            filename: string identifying file insights are being saved for
-            data: response from IBM Watson Personality Profile API
-        Returns:
-            void
-    """
-    csvfile = open(filename, 'w')
-    csvwriter = csv.writer(csvfile, delimiter=',')
-    csvwriter.writerow(headeradder())
-
-    # Write Personality Insights data to csv
-    csvdata = []
-    csvdata.append(filename.replace('.cvs', ''))
-    v1 =  data['tree']
-    headers = []
-    for i in v1:
-        if i == 'children':
-            for j in v1[i]:
-                for k in j:
-                    if k == 'children':
-                        vals = []
-                        for l in j[k]:
-                            for m in l['children']:
-                                if 'children' in m:
-                                    for n in m['children']:
-                                        csvdata.append(n['percentage'])
-                                else:
-                                    csvdata.append(m['percentage'])
-    csvwriter.writerow(csvdata)
-
 def speechanalysis(filename):
     """ Get Personality Profile from interview.
-
         Args:
             filename: string name of mp3 file to analyze
         Returns:
@@ -204,7 +156,8 @@ def speechanalysis(filename):
     csv_file_name = filename.replace('.mp3', '') + '.csv'
 
     # Write Personality Insights response to '<filename>.csv'
-    jsontocsvwriter(csv_file_name, json.loads(insights.text))
+    with open(csv_file_name, 'w') as f:
+        print >> f, insights.text
 
 if __name__ == '__main__':
     speechanalysis(sys.argv[1])
