@@ -23,6 +23,7 @@ textarea {
     width:100%;
     height:100px;
     resize:none;
+    font-size: medium;
 }
 
 .subBtn {
@@ -69,7 +70,7 @@ textarea {
         box-shadow: 7px 10px 14px -10px rgba(0,0,0,0.75);
 }
 
-#form_fields {
+.form_fields {
   padding-top: 20px;
 }
 

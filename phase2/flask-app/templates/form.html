@@ -10,23 +10,23 @@
         </div>
         <div id="main">
             <form method="post" action="{{ url_for('submitted_form') }}" id="form">
-                <div id="form_fields">
+                <div class="form_fields">
                   <label for="name" id="nameLbl">Name</label>
                   <input type="text" name="name" id="name-field">
                 </div>
-                <div id="form_fields">
+                <div class="form_fields">
                   <label for="email" id="emailLbl">E-mail</label>
                   <input type="email" name="email" id="email-field">
                 </div>
-                <div id="form_fields">
+                <div class="form_fields">
                   <label for="audio" id="audioLbl">Audio</label>
                   <input type="file" name="audio" accept="audio/*" id="audio-field">
                 </div>
-                <div id="form_fields">
+                <div class="form_fields">
                   <label for="video" id="videoLbl">Video</label>
                   <input type="file" name="video" accept="video/*" id="video-field">
                 </div>
-                <div id="form_fields">
+                <div class="form_fields">
                   <label for="comments" id="commentsLbl">Comments</label>
                   <textarea name="comments" id="comments-field"></textarea><br/>
                 </div>
