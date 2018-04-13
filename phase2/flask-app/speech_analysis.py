@@ -105,7 +105,7 @@ def getintervieweewords(speaker_data):
                             speakers[label['speaker']] = [word[0]]
 
                         # Pick interviewee halfway through audio
-                        if halfway_timestamp >= label['from'] and halfway_timestamp <= label['to']:
+                        if halfway_timestamp >= label['from'] and interviewee == -1:
                             interviewee = pickinterviewee(speakers)
                         break
 
