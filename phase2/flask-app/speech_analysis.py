@@ -1,7 +1,3 @@
-import sys
-import requests
-import json
-
 speech_to_text_url = 'https://stream.watsonplatform.net/speech-to-text/api/v1/recognize'
 speech_to_text_username = 'be828bbc-2a8d-47e5-838b-ab79102d06c6'
 speech_to_text_password = 'R5gsSmhsiIPv'

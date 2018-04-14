@@ -4,34 +4,38 @@
 <link rel="stylesheet" type="text/css" href="/static/style.css">
 </head>
 <body>
+    <div class="topbar">
+        <img src="/static/ibm-watson_logo.png">
+        <p id="header_title">IBM Krannert Research Group</p>
+    </div>
     <div id="container">
         <div>
             <h1 id="title">Submit Interview Data</h1>
         </div>
         <div id="main">
-            <form method="post" action="{{ url_for('submitted_form') }}" id="form">
-                <div class="form_fields">
-                  <label for="name" id="nameLbl">Name</label>
-                  <input type="text" name="name" id="name-field">
-                </div>
-                <div class="form_fields">
-                  <label for="email" id="emailLbl">E-mail</label>
-                  <input type="email" name="email" id="email-field">
-                </div>
-                <div class="form_fields">
-                  <label for="audio" id="audioLbl">Audio</label>
-                  <input type="file" name="audio" accept="audio/*" id="audio-field">
-                </div>
-                <div class="form_fields">
-                  <label for="video" id="videoLbl">Video</label>
-                  <input type="file" name="video" accept="video/*" id="video-field">
-                </div>
-                <div class="form_fields">
-                  <label for="comments" id="commentsLbl">Comments</label>
-                  <textarea name="comments" id="comments-field"></textarea><br/>
-                </div>
-                <input type="submit" class="subBtn">
-            </form>
+          <form method="post" action="{{ url_for('submitted_form') }}" id="form" enctype="multipart/form-data">
+            <div class="form_fields">
+              <label for="name" id="nameLbl">Name</label>
+              <input type="text" name="name" id="name-field">
+            </div>
+            <div class="form_fields">
+              <label for="email" id="emailLbl">E-mail</label>
+              <input type="email" name="email" id="email-field">
+            </div>
+            <div class="form_fields">
+              <label for="audio" id="audioLbl">Audio</label>
+              <input type="file" name="audio" accept="audio/*" id="audio-field">
+            </div>
+            <div class="form_fields">
+              <label for="video" id="videoLbl">Video</label>
+              <input type="file" name="video" accept="video/*" id="video-field">
+            </div>
+            <div class="form_fields">
+              <label for="comments" id="commentsLbl">Comments</label>
+              <textarea name="comments" id="comments-field"></textarea><br/>
+            </div>
+            <input type="submit" class="subBtn">
+          </form>
         </div>
     </div>
 </body>

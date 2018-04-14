@@ -18,6 +18,7 @@ from werkzeug.utils import secure_filename
 app = Flask(__name__)
 # [END create_app]
 
+app.config['MAX_CONTENT_LENGTH'] = 1024 * 1024 * 1024 * 1024
 
 # [START form]
 @app.route('/form')
@@ -33,14 +34,16 @@ def submitted_form():
     email = request.form['email']
     comments = request.form['comments']
 
-    # TODO: fix so saving files works
     if request.method == 'POST':
-        print('I got in')
-        files = request.files['audio']
-        files.save(secure_filename(files.filename))
+        audio_file = request.files['audio']
+        video_file = request.files['video']
 
-    # Call speech analysis with audio filename to get json insights
+        # TODO: save files to database
+
+    # TODO: Call speech analysis with audio filename to get json insights
     # insights = speech_analysis.speechanalysis(audio_filename)
+
+    # TODO: Send insights to database
 
     # Instantiates a client
     #storage_client = storage.Client()
