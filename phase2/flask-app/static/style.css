@@ -3,6 +3,7 @@ body {
     font-family: sans-serif;
     background-color: #215D70;
     width:100%;
+    margin: 0px;
 }
 
 label {
@@ -24,6 +25,11 @@ textarea {
     height:100px;
     resize:none;
     font-size: medium;
+}
+
+img {
+  max-width: 50px;
+  float: left;
 }
 
 .subBtn {
@@ -49,6 +55,20 @@ textarea {
   background: #428BCA;
 }
 
+.topbar {
+  width:100%;
+  background-color: #0F1010;
+  padding: 10px;
+  height: 50px;
+}
+
+#header_title {
+  float: left;
+  color: white;
+  text-align: center;
+  padding-left: 20px;
+}
+
 #commentsLbl {
     position: relative
 }
@@ -56,13 +76,12 @@ textarea {
 #container {
         position:relative;
         left:50%;
-        top:50%;
         width:600px;
 
         margin-left:-300px;
-        margin-top:-175px;
+        margin-top: 50px;
 
-        background-color: #FFFFFF;
+        background-color: white;
         border-radius: 4px;
 
         -webkit-box-shadow: 7px 10px 14px -10px rgba(0,0,0,0.75);
