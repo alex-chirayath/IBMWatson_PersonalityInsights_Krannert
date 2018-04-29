@@ -1,7 +1,7 @@
 body {
     color: #2D2E30;
     font-family: sans-serif;
-    background-color: #215D70;
+    background-color: #FCFAFA;
     width:100%;
     margin: 0px;
 }
@@ -40,8 +40,9 @@ img {
     position: relative;
     cursor: pointer;
     bottom:-10px;
+    float: right;
 
-    background: #5A5A5A;
+    background: #EF8488;
     color: #fff;
     font-family: Sans-serif;
     font-size: 20px;
@@ -52,12 +53,12 @@ img {
 }
 
 .subBtn:hover {
-  background: #428BCA;
+  background: #C83C7E;
 }
 
 .topbar {
   width:100%;
-  background-color: #0F1010;
+  background-color: #233647;
   padding: 10px;
   height: 50px;
 }
@@ -81,16 +82,66 @@ img {
         margin-left:-300px;
         margin-top: 50px;
 
-        background-color: white;
+        background-color: #FCFAFA;
+        color: #233647;
         border-radius: 4px;
 
+
+        /*
         -webkit-box-shadow: 7px 10px 14px -10px rgba(0,0,0,0.75);
         -moz-box-shadow: 7px 10px 14px -10px rgba(0,0,0,0.75);
         box-shadow: 7px 10px 14px -10px rgba(0,0,0,0.75);
+        */
 }
 
-.form_fields {
-  padding-top: 20px;
+/* DATA VIS STYLING */
+/*Rectangle bar class styling*/
+axis path,
+.axis line {
+  fill: none;
+  stroke: #000;
+  shape-rendering: crispEdges;
+}
+
+.bar {
+  fill: orange;
+}
+
+.bar:hover {
+  fill: orangered ;
+}
+
+.x.axis path {
+  display: none;
+}
+
+.d3-tip {
+  line-height: 1;
+  font-weight: bold;
+  padding: 12px;
+  background: rgba(0, 0, 0, 0.8);
+  color: #fff;
+  border-radius: 2px;
+}
+
+/* Creates a small triangle extender for the tooltip */
+.d3-tip:after {
+  box-sizing: border-box;
+  display: inline;
+  font-size: 10px;
+  width: 100%;
+  line-height: 1;
+  color: rgba(0, 0, 0, 0.8);
+  content: "\25BC";
+  position: absolute;
+  text-align: center;
+}
+
+/* Style northward tooltips differently */
+.d3-tip.n:after {
+  margin: -1px 0 0 0;
+  top: 100%;
+  left: 0;
 }
 
 #header {
@@ -137,7 +188,6 @@ img {
 }
 
 
-
 #audio-field {
     position: relative;
 }
@@ -145,8 +195,6 @@ img {
 #video-field {
     position: relative;
 }
-
-
 
 .pagetitle {
     text-align: center;
