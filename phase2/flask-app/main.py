@@ -36,7 +36,6 @@ def submitted_form():
 
     if request.method == 'POST':
         audio_file = request.files['audio']
-        video_file = request.files['video']
 
     # Call speech analysis with audio filename to get json insights
     # insights = speech_analysis.speechanalysis(audio_filename)

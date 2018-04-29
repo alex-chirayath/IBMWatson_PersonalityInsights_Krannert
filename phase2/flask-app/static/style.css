@@ -124,10 +124,6 @@ img {
 
 }
 
-#videoLbl {
-    position: relative;
-}
-
 #emailLbl {
     position: relative;
 }
@@ -139,10 +135,6 @@ img {
 
 
 #audio-field {
-    position: relative;
-}
-
-#video-field {
     position: relative;
 }
 
