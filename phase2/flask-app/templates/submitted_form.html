@@ -22,6 +22,8 @@
           <strong>Comments</strong>: {{comments}}
        </p>
 
+       <p>Predicted GPA: {{GPA}}</p>
+
        <div id="datavis">
 <script src="https://d3js.org/d3.v3.min.js"></script>
 <script src="https://labratrevenge.com/d3-tip/javascripts/d3.tip.v0.6.3.js"></script>
@@ -66,7 +68,7 @@ svg.call(tip);
 
 d3.tsv("static/js/data/userDataSimple.tsv", type, function(error, data) {
   x.domain(data.map(function(d) { return d.letter; }));
-  y.domain([0, d3.max(data, function(d) { return d.accuracy; })]);
+  y.domain([.9, d3.max(data, function(d) { return d.accuracy; })]);
 
 
 
@@ -74,7 +76,7 @@ d3.tsv("static/js/data/userDataSimple.tsv", type, function(error, data) {
       .attr("class", "x axis")
       .attr("transform", "translate(0," + height + ")")
       .call(xAxis);
-    
+
   gAxis.selectAll("text")
       .attr("y", 0)
       .attr("x", 9)
@@ -82,7 +84,7 @@ d3.tsv("static/js/data/userDataSimple.tsv", type, function(error, data) {
       .attr("transform", "rotate(90)")
       .style("text-anchor", "start");
 
-  
+
   var maxLength = 0;
   gAxis.selectAll("text").each(function () {
       var labelLength = this.getBBox().width;
@@ -130,8 +132,8 @@ function type(d) {
      </div>
 
 
-   
-    
+
+
    </div>
 
 
