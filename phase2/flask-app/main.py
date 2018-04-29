@@ -36,17 +36,13 @@ def submitted_form():
 
     if request.method == 'POST':
         audio_file = request.files['audio']
-        video_file = request.files['video']
 
-        # TODO: save files to database
-
-    # TODO: Call speech analysis with audio filename to get json insights
+    # Call speech analysis with audio filename to get json insights
     # insights = speech_analysis.speechanalysis(audio_filename)
 
-    # TODO: Send insights to database
-
-    # Instantiates a client
-    #storage_client = storage.Client()
+    # Predict GPA
+    # gpa = model_dev(insights, 'RF_PI.pkl')
+    gpa = '3.25-3.5'
 
     # [END submitted]
     # [START render_template]
@@ -54,7 +50,8 @@ def submitted_form():
         'submitted_form.html',
         name=name,
         email=email,
-        comments=comments)
+        comments=comments,
+        GPA=gpa)
     # [END render_template]
 
 

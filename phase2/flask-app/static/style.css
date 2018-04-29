@@ -175,10 +175,6 @@ axis path,
 
 }
 
-#videoLbl {
-    position: relative;
-}
-
 #emailLbl {
     position: relative;
 }
@@ -192,9 +188,13 @@ axis path,
     position: relative;
 }
 
+<<<<<<< HEAD
 #video-field {
     position: relative;
 }
+=======
+
+>>>>>>> 155d57f9d2ff501aca5f3c66d30cbba50b848a0b
 
 .pagetitle {
     text-align: center;
